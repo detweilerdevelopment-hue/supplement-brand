@@ -1,6 +1,6 @@
 ﻿'use client';
 import { useState } from 'react';
-import { ArrowUpRight, ArrowRight, Plus, Minus, Leaf, Sun, Sparkles, Check, Menu, X } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, Plus, Minus, Check, Menu, X } from 'lucide-react';
 
 const questions = [
   ['What is aevra?', 'Aevra is a new supplement brand built around a simple idea: taking care of yourself should feel like a natural part of your day. We’re developing our first daily formula and inviting you along for the journey.'],
@@ -26,19 +26,49 @@ function Signup({ compact = false }: {compact?: boolean}) {
   </form>}</div>;
 }
 
+const principles = [
+  {number:'01',style:'sphere',title:'Purpose in every detail',copy:'A considered approach, from the first ingredient to the everyday ritual.'},
+  {number:'02',style:'water',title:'Nothing left unclear',copy:'The complete formula, shared before you decide. Clarity comes first.'},
+  {number:'03',style:'orbit',title:'Made for real life',copy:'A small moment of care. Room for the life you already live.'},
+  {number:'04',style:'mineral',title:'Carefully developed',copy:'Our first formula is taking shape. Follow the journey from the beginning.'},
+];
+
 export default function Home(){
   const [menu,setMenu]=useState(false);const [open,setOpen]=useState<number|null>(0);
   return <>
-    <div className="header-band"><header><a href="#" className="logo" aria-label="aevra home">aevra<span>®</span></a><nav aria-label="Main navigation" className={menu?'nav active':'nav'}><a onClick={()=>setMenu(false)} href="#philosophy">Our philosophy</a><a onClick={()=>setMenu(false)} href="#ritual">The daily ritual</a><a onClick={()=>setMenu(false)} href="#questions">Good questions</a></nav><a className="nav-cta" href="#join">Join the waitlist <ArrowUpRight size={16}/></a><button className="menu-button" aria-label="Toggle navigation" aria-expanded={menu} onClick={()=>setMenu(!menu)}>{menu?<X/>:<Menu/>}</button></header></div>
-    <main>
-      <section className="hero" aria-labelledby="hero-title"><div className="hero-copy"><div className="eyebrow"><span className="live-dot"/> A NEW KIND OF DAILY GOOD</div><h1 id="hero-title">A little ritual.<br/>A <em>fuller</em> life.</h1><p className="intro">More intention. Less overthinking.<br/>Thoughtfully made supplements for the life you want to feel more present in.</p><div className="hero-signup"><p className="signup-label">Your next chapter starts here.</p><Signup/><div className="early-note"><span className="mini-sun">✳</span> First to know. First to discover. A little closer to good.</div></div></div><div className="hero-art"><div className="art-top"><span>ROOTED IN NATURE.<br/>MADE FOR REAL LIFE.</span><span className="art-cross">✳</span></div><img src="/aevra-blue.webp" alt="Aevra Daily One supplement bottle with a powder-blue label on sunlit white stone platforms" width="1122" height="1402" fetchPriority="high"/><div className="round-seal">A LITTLE EVERY DAY<span>✳</span>GOES A LONG WAY</div><div className="art-caption"><span>MEET YOUR NEW DAILY RITUAL</span><span>01 — DAILY ONE</span></div></div></section>
-      <div className="values-strip"><span><Leaf/>Nature, thoughtfully considered</span><span className="strip-star">✳</span><span><Sun/>Made for your everyday</span><span className="strip-star">✳</span><span><Sparkles/>Less noise. More intention.</span></div>
-      <section id="philosophy" className="philosophy section"><div><div className="eyebrow">OUR PHILOSOPHY</div><h2>Wellness shouldn’t<br/>be a <em>whole thing.</em></h2></div><div className="philosophy-copy"><p>Somewhere along the way, feeling good got complicated. More routines. More rules. More things to keep up with.</p><p>We’re making room for something simpler. Thoughtfully developed supplements. Clear information. A small moment of care that fits into the life you already live.</p><a className="text-link" href="#ritual">A better kind of daily habit <ArrowRight size={18}/></a></div></section>
-      <section id="ritual" className="ritual section"><div className="section-top"><div><div className="eyebrow">SMALL HABIT. BIG INTENTION.</div><h2>Meet your daily <em>plus one.</em></h2></div><p>A fresh perspective on supplements.<br/>Starting with the things that matter.</p></div><div className="cards"><article><span className="card-number">01 / THE APPROACH</span><div className="card-art botanical"><Leaf size={83} strokeWidth={.8}/><span className="orbit"/></div><h3>Nature is our starting point.</h3><p>Inspired by the natural world. Developed with care, with every ingredient chosen for a reason.</p></article><article><span className="card-number">02 / THE STANDARD</span><div className="card-art clarity"><div className="clear-circle"/><Sparkles size={54} strokeWidth={1}/></div><h3>Clarity comes first.</h3><p>You deserve to know what you’re taking. We’ll share our full formula before you ever make a purchase.</p></article><article><span className="card-number">03 / THE RITUAL</span><div className="card-art daily"><Sun size={94} strokeWidth={.7}/></div><h3>A moment that’s yours.</h3><p>Next to your morning coffee. After your deep breath. A simple ritual, with room for real life.</p></article></div></section>
-      <section className="story"><div className="story-symbol">a<span>✳</span></div><div><div className="eyebrow">A NOTE FROM AEVRA</div><h2>For the days you do it all.<br/>And the days you <em>just are.</em></h2><p>You don’t need a new you. You need a little space for the you that’s already here. That’s why we’re building aevra: to make everyday care feel a little more human.</p><span className="signature">Here’s to your kind of good.</span></div></section>
-      <section id="questions" className="faq section"><div><div className="eyebrow">A LITTLE MORE CLARITY</div><h2>Good <em>questions.</em><br/>Honest answers.</h2></div><div className="questions">{questions.map(([q,a],i)=><div className="question" key={q}><h3><button onClick={()=>setOpen(open===i?null:i)} aria-expanded={open===i} aria-controls={`answer-${i}`}>{q}{open===i?<Minus size={18}/>:<Plus size={18}/>}</button></h3><div id={`answer-${i}`} hidden={open!==i}><p>{a}</p></div></div>)}</div></section>
-      <section className="join" id="join"><span className="join-star">✳</span><div className="eyebrow">GOOD THINGS START SMALL</div><h2>Your daily good.<br/><em>Coming soon.</em></h2><p>Be there from the beginning. Join for first access,<br/>behind-the-scenes updates, and a fresh start.</p><Signup compact/><span className="join-foot">NO PRESSURE. JUST POSSIBILITY.</span></section>
-    </main><footer><div className="footer-top"><a className="logo" href="#">aevra<span>®</span></a><p>A little ritual. A fuller life.</p><a href="/privacy">Privacy & your data <ArrowUpRight size={15}/></a></div><div className="footer-bottom"><span>© {new Date().getFullYear()} aevra. All rights reserved.</span><span>Made with intention. For every day.</span></div><p className="disclaimer">Aevra is in development. Product artwork represents our brand direction; final packaging and formula may change. Content is for general information and is not medical advice.</p></footer>
+    <a className="skip-link" href="#main">Skip to content</a>
+    <div className="header-band"><header>
+      <a href="#" className="logo" aria-label="aevra home">aevra<span>®</span></a>
+      <nav aria-label="Main navigation" className={menu?'nav active':'nav'}>
+        <a onClick={()=>setMenu(false)} href="#philosophy">Our philosophy</a>
+        <a onClick={()=>setMenu(false)} href="#ritual">Our approach</a>
+        <a onClick={()=>setMenu(false)} href="#questions">Good questions</a>
+      </nav>
+      <a className="nav-cta" href="#join">Get early access <ArrowUpRight size={15}/></a>
+      <button className="menu-button" aria-label="Toggle navigation" aria-expanded={menu} onClick={()=>setMenu(!menu)}>{menu?<X/>:<Menu/>}</button>
+    </header></div>
+    <main id="main">
+      <section className="hero" aria-labelledby="hero-title">
+        <img className="hero-photo" src="/midnight-product.webp" alt="Sapphire-blue aevra Daily One bottle illuminated on dark slate" width="1536" height="1024" fetchPriority="high"/>
+        <div className="hero-shade"/>
+        <div className="hero-copy"><div className="eyebrow"><span className="live-dot"/> A NEW CHAPTER IN EVERYDAY CARE</div>
+          <h1 id="hero-title">Care,<br/><em>considered.</em></h1>
+          <p className="intro">A thoughtful new approach to supplements.<br/>A little more intention. A ritual of your own.</p>
+          <div className="hero-signup"><Signup/><p className="early-note">FIRST ACCESS. A CLOSER LOOK. YOUR DAILY GOOD.</p></div>
+        </div>
+        <span className="product-note">PURPOSEFUL DETAILS.<br/>EVERYDAY INTENTION.</span>
+        <div className="hero-bottom"><span>01 / DAILY ONE — IN DEVELOPMENT</span><a href="#ritual">Discover the aevra approach <ArrowRight size={15}/></a></div>
+      </section>
+      <section id="ritual" className="ritual section">
+        <div className="section-top"><div><div className="eyebrow">THE AEVRA APPROACH</div><h2>What’s inside <em>matters.</em></h2></div><a className="text-link" href="#questions">A little more clarity <ArrowUpRight size={16}/></a></div>
+        <div className="cards">{principles.map(item=><article key={item.number}><div className={'material '+item.style} aria-hidden="true"><div className="material-object"/><span>{item.number} / AEVRA</span></div><h3>{item.title}</h3><p>{item.copy}</p></article>)}</div>
+        <p className="formula-note">Our formula is in development. Full ingredients and serving details will be available before launch.</p>
+      </section>
+      <section id="philosophy" className="philosophy section"><div><div className="eyebrow">LESS NOISE. MORE INTENTION.</div><h2>A little ritual.<br/>A <em>fuller life.</em></h2></div><div className="philosophy-copy"><p>Feeling good shouldn’t come with a hundred new rules. We believe everyday care can be simpler, quieter, and a little more personal.</p><p>That’s why we’re building aevra. Thoughtfully developed supplements, clear information, and space for the life you already live.</p><span className="signature">Here’s to your kind of good.</span></div></section>
+      <section className="story"><img src="/midnight-coast.webp" alt="Moonlight reflected across a quiet ocean between dark coastal cliffs" width="1536" height="1024" loading="lazy"/><div className="story-copy"><div className="eyebrow">MAKE SPACE FOR YOURSELF</div><h2>A brighter tomorrow<br/>starts with a moment<br/><em>of care today.</em></h2><p>For the days you do it all.<br/>And the days you just are.</p><a className="text-link" href="#join">Be part of the beginning <ArrowUpRight size={17}/></a></div><span className="story-caption">A SMALL RITUAL. AN OPEN HORIZON.</span></section>
+      <section id="questions" className="faq section"><div><div className="eyebrow">NOTHING LEFT UNCLEAR</div><h2>Good questions.<br/><em>Honest answers.</em></h2></div><div className="questions">{questions.map(([q,a],i)=><div className="question" key={q}><h3><button onClick={()=>setOpen(open===i?null:i)} aria-expanded={open===i} aria-controls={'answer-'+i}>{q}{open===i?<Minus size={18}/>:<Plus size={18}/>}</button></h3><div id={'answer-'+i} hidden={open!==i}><p>{a}</p></div></div>)}</div></section>
+      <section className="join" id="join"><div className="join-orb" aria-hidden="true"/><div className="eyebrow">BE HERE FROM THE BEGINNING</div><h2>Your daily good.<br/><em>On the horizon.</em></h2><p>Join for first access, thoughtful updates,<br/>and a closer look at what comes next.</p><Signup compact/><span className="join-foot">NO PRESSURE. JUST POSSIBILITY.</span></section>
+    </main>
+    <footer><div className="footer-top"><a className="logo" href="#">aevra<span>®</span></a><p>Care, considered.</p><a href="/privacy">Privacy & your data <ArrowUpRight size={15}/></a></div><div className="footer-bottom"><span>© {new Date().getFullYear()} aevra. All rights reserved.</span><span>Made with intention. For every day.</span></div><p className="disclaimer">Aevra is in development. Product artwork represents our brand direction; final packaging and formula may change. Content is for general information and is not medical advice.</p></footer>
   </>;
 }
-

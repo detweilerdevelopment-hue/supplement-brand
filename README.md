@@ -1,6 +1,6 @@
 # aevra prelaunch
 
-A complete Next.js / React / TypeScript site with original SVG product art and copy, responsive layouts, accessible email forms, SQLite persistence, duplicate protection, rate limiting, and token-based deletion.
+A complete Next.js / React / TypeScript site in the selected Midnight Science design: deep navy, refined serif typography, original generated product and coastal photography, responsive layouts, accessible email forms, SQLite persistence, duplicate protection, rate limiting, and token-based deletion. Image prompts and asset paths are documented in `design/midnight-images.md`.
 
 ## Run
 
